@@ -30,35 +30,35 @@ Overview of the CH55X assembly instruction cycle:
 
 | Instruction format | Functional description | Instruction byte | Instruction cycle |
 |--------------------|------------------------|------------------|-------------------|
-| MOV A,Rn | The contents of (Rn)→(A)Rn are sent to accumulator A, Rn=R0-R7 | 1 | 1 |
-| MOV A,direct | (direct) → (A) the contents of the direct unit address are sent to the accumulator A | 2 | 2 |
-| MOV A,@Ri | (Ri) → (A) The contents of the address unit pointed to by the Ri content are sent to the accumulator A, Ri=R0 or R1 | 1 | 1 |
-| MOV A,#data | #data→(A) Immediately sent to accumulator A | 2 | 2 |
-| MOV Rn,A | (A)→(Rn) The contents of accumulator A are sent to register Rn | 1 | 1 |
+| MOV A,Rn | The contents of (Rn)→(A)Rn are move to accumulator A, Rn=R0-R7 | 1 | 1 |
+| MOV A,direct | (direct) → (A) the contents of the direct unit address are move to the accumulator A | 2 | 2 |
+| MOV A,@Ri | (Ri) → (A) The contents of the address unit pointed to by the Ri content are move to the accumulator A, Ri=R0 or R1 | 1 | 1 |
+| MOV A,#data | #data→(A) Immediately move to accumulator A | 2 | 2 |
+| MOV Rn,A | (A)→(Rn) The contents of accumulator A are move to register Rn | 1 | 1 |
 | MOV Rn,direct | (direct)→(Rn) directly address the contents of the unit to send registers | 2 | 2 |
-| MOV Rn,#data | #data→(Rn) immediate data is sent directly to register Rn | 2 | 2 |
-| MOV direct,A | (A)→(direct) accumulator A content is sent to the direct addressing unit | 2 | 2 |
-| MOV direct,Rn | The contents of the (Rn)→(direct) register are sent to the directly addressed unit. | 2 | 2 |
+| MOV Rn,#data | #data→(Rn) immediate data is move directly to register Rn | 2 | 2 |
+| MOV direct,A | (A)→(direct) accumulator A content is move to the direct addressing unit | 2 | 2 |
+| MOV direct,Rn | The contents of the (Rn)→(direct) register are move to the directly addressed unit. | 2 | 2 |
 | MOV direct2,direct1 | (direct1)→(direct2) Directly address the contents of the unit 1 Send the direct addressing unit 2 | 3 | 3 |
-| MOV direct,@Ri | The contents of the (Ri)→(direct) register are sent to the direct addressing unit. | 2 | 2 |
+| MOV direct,@Ri | The contents of the (Ri)→(direct) register are move to the direct addressing unit. | 2 | 2 |
 | MOV direct,#data | #data→(direct) immediate number to send direct addressing unit | 3 | 3 |
-| MOV @Ri,A | (A)→((Ri)) The contents of accumulator A are sent to the RAM unit with the address in Ri as the address | 1 | 1 |
+| MOV @Ri,A | (A)→((Ri)) The contents of accumulator A are move to the RAM unit with the address in Ri as the address | 1 | 1 |
 | MOV @Ri,direct | (direct)→((Ri)) Directly address the contents of the unit to the RAM unit addressed to the contents of Ri | 2 | 2 |
-| MOV @Ri,#data | #data→((Ri)) immediate data is sent to the RAM unit with the content in Ri as the address | 2 | 2 |
-| MOV DPTR,#data16 | #dataH→(DPH), #dataL→(DPL) The upper 8 bits of the 16-bit constant are sent to DPH, and the lower 8 bits are sent to DPL. | 3 | 3 |
+| MOV @Ri,#data | #data→((Ri)) immediate data is move to the RAM unit with the content in Ri as the address | 2 | 2 |
+| MOV DPTR,#data16 | #dataH→(DPH), #dataL→(DPL) The upper 8 bits of the 16-bit constant are move to DPH, and the lower 8 bits are move to DPL. | 3 | 3 |
 | MOVX A,@DPTR | ((DPTR)) → (A) The data pointer points to the contents of the external RAM (16-bit address) to the accumulator A | 1 | 1 |
-| MOVX A,@Ri | ((Ri))→(A) Register Ri The contents of the external RAM (8-bit address) are sent to accumulator A, and the upper 8 bits are provided by P2. | 1 | 1 |
-| MOVX @DPTR,A | (A)→((DPTR)) The contents of the accumulator are sent to the data pointer to the external RAM (16-bit address) | 1 | 1 |
-| MOVX @Ri,A | (A)→((Ri)) The contents of the accumulator are sent to the register Ri to the external RAM (8-bit address), and the upper 8 bits are provided by P2 | 1 | 1 |
-| MOVC A,@A+DPTR | ((A)+(DPTR))→(A) The contents of the table address unit are sent to the accumulator A. | 1 |(*) 5/6/7 |
-| MOVC A,@A+PC | (PC)+1→(PC),((A)+(PC))→(A) The contents of the table address unit are sent to accumulator A | 1 |(*) 5/6/7 |
+| MOVX A,@Ri | ((Ri))→(A) Register Ri The contents of the external RAM (8-bit address) are move to accumulator A, and the upper 8 bits are provided by P2. | 1 | 1 |
+| MOVX @DPTR,A | (A)→((DPTR)) The contents of the accumulator are move to the data pointer to the external RAM (16-bit address) | 1 | 1 |
+| MOVX @Ri,A | (A)→((Ri)) The contents of the accumulator are move to the register Ri to the external RAM (8-bit address), and the upper 8 bits are provided by P2 | 1 | 1 |
+| MOVC A,@A+DPTR | ((A)+(DPTR))→(A) The contents of the table address unit are move to the accumulator A. | 1 |(*) 5/6/7 |
+| MOVC A,@A+PC | (PC)+1→(PC),((A)+(PC))→(A) The contents of the table address unit are move to accumulator A | 1 |(*) 5/6/7 |
 | XCH A,Rn | (A)←→(Rn) accumulator and content exchange in working register Rn | 1 | 1 |
 | XCH A,direct | (direct)←→(A) The contents of the accumulator A and the content exchange of the directly addressed unit | 2 | 2 |
 | XCH A,@Ri | (A)←→((Ri)) The contents of the accumulator are interchanged with the contents of the working register Ri | 1 | 1 |
-| XCHD A,@Ri | (A[3:0])←→((Ri)[3:0]) The accumulator is swapped with the lower nibble of the contents of the memory location pointed to by the working register Ri | 1 | 1 |
+| XCHD A,@Ri | (A[3:0])←→((Ri)[3:0]) The accumulator is swapped with the lower bit of the contents of the memory location pointed to by the working register Ri | 1 | 1 |
 | SWAP A | (A[3:0])←→(A[7:4]) The contents of the accumulator are swapped in high and low bits | 1 | 1 |
-| PUSH direct | (SP)+1→(SP),(direct)→(SP) The stack pointer is first incremented by 1, and the data in the direct addressing unit is sent to the unit pointed to by the stack pointer SP. | 2 | 2 |
-| POP direct | (SP)→(direct), (SP)-1→(SP) The stack pointer refers to the unit data sent to the direct addressing unit, and the stack pointer SP is decremented by 1 | 2 | 2 |
+| PUSH direct | (SP)+1→(SP),(direct)→(SP) The stack pointer is first incremented by 1, and the data in the direct addressing unit is move to the unit pointed to by the stack pointer SP. | 2 | 2 |
+| POP direct | (SP)→(direct), (SP)-1→(SP) The stack pointer refers to the unit data move to the direct addressing unit, and the stack pointer SP is decremented by 1 | 2 | 2 |
 
 
 ### Arithmetic operation instructions (24)
@@ -74,18 +74,18 @@ Overview of the CH55X assembly instruction cycle:
 | ADDC A,@Ri | (A)+((Ri))+(C)→(A) The contents of accumulator A and the working register Ri point to the contents of the address unit, together with the carry bit, and the result exists in A | 1 | 1 |
 | ADDC A,#data | (A)+#data+(C)→(A) The contents of accumulator A are added to the immediate value along with the carry bit, and the result exists in A. | 2 | 2 |
 | INC A | (A)+1→(A) The content in accumulator A is incremented by 1, and the result exists in A | 1 | 1 |
-| INC Rn | (Rn) +1 → (Rn) register The content of Rn is incremented by 1, and the result is sent back to the original address unit. | 1 | 1 |
-| INC direct | (direct)+1→(direct) The content in the direct address unit is incremented by 1, and the result is sent back to the original address unit. | 2 | 2 |
-| INC @Ri | ((Ri)) +1→((Ri)) The contents of the address unit pointed to by the contents of the register are incremented by 1, and the result is sent back to the original address unit. | 1 | 1 |
-| INC DPTR | (DPTR) +1 → (DPTR) data pointer content plus 1, the result is sent back to the data pointer | 1 | 1 |
+| INC Rn | (Rn) +1 → (Rn) register The content of Rn is incremented by 1, and the result is move back to the original address unit. | 1 | 1 |
+| INC direct | (direct)+1→(direct) The content in the direct address unit is incremented by 1, and the result is move back to the original address unit. | 2 | 2 |
+| INC @Ri | ((Ri)) +1→((Ri)) The contents of the address unit pointed to by the contents of the register are incremented by 1, and the result is move back to the original address unit. | 1 | 1 |
+| INC DPTR | (DPTR) +1 → (DPTR) data pointer content plus 1, the result is move back to the data pointer | 1 | 1 |
 | SUBB A,Rn | (A)-(Rn)-(C)→(A) The contents of accumulator A are subtracted from the contents of the working register, along with the borrowing bits. The result is in A. | 1 | 1 |
 | SUBB A,direct | (A)-(direct)-(C)→(A) The contents of the accumulator A are subtracted from the contents of the direct address unit, together with the borrowing bit, and the result exists in A | 2 | 2 |
 | SUBB A,@Ri | (A)-((Ri))-(C)→(A) The contents of the accumulator A are subtracted from the contents of the address unit pointed to by the working register Ri, together with the borrowing bit, and the result exists in A. | 1 | 1 |
 | SUBB A,#data | (A)-#data-(C)→(A) The contents of accumulator A are subtracted from the immediate value, along with the borrowing bit, and the result exists in A. | 2 | 2 |
-| DEC A | (A)-1→(A) The contents of the accumulator A are decremented by 1, and the result is sent back to the accumulator A. | 1 | 1 |
-| DEC Rn | (Rn)-1→(Rn) Register The contents of Rn are decremented by 1, and the result is sent back to the register Rn. | 1 | 1 |
-| DEC direct | (direct)-1→(direct) The content in the direct address unit is decremented by 1, and the result is sent back to the direct address unit. | 2 | 2 |
-| DEC @Ri | ((Ri))-1→((Ri)) register The content of the address unit pointed to by Ri is decremented by 1, and the result is sent back to the original address unit. | 1 | 1 |
+| DEC A | (A)-1→(A) The contents of the accumulator A are decremented by 1, and the result is move back to the accumulator A. | 1 | 1 |
+| DEC Rn | (Rn)-1→(Rn) Register The contents of Rn are decremented by 1, and the result is move back to the register Rn. | 1 | 1 |
+| DEC direct | (direct)-1→(direct) The content in the direct address unit is decremented by 1, and the result is move back to the direct address unit. | 2 | 2 |
+| DEC @Ri | ((Ri))-1→((Ri)) register The content of the address unit pointed to by Ri is decremented by 1, and the result is move back to the original address unit. | 1 | 1 |
 | MUL AB | (A) × (B) → (A) and (B) The contents of accumulator A are multiplied by the contents of register B, and the result exists in A, B. | 1 | 1 |
 | DIV AB (CH558/559) | (A) ÷ (B) → (A) and (B) The contents of accumulator A are divided by the contents of register B, the resulting quotient is accumulator A, and the remainder is stored in register B. | 1 | 1 |
 | DIV AB (CH551/552/554) | (A) ÷ (B) → (A) and (B) The contents of accumulator A are divided by the contents of register B, the resulting quotient is accumulator A, and the remainder is stored in register B. | 1 |(*) 4 |
@@ -150,7 +150,7 @@ Overview of the CH55X assembly instruction cycle:
 
 | Instruction format | Functional description | Instruction byte | Instruction cycle |
 |--------------------|------------------------|------------------|-------------------|
-| MOV C,bit | Bit→CY, a bit of data is sent to CY | 2 | 2 |
+| MOV C,bit | Bit→CY, a bit of data is move to CY | 2 | 2 |
 | MOV bit,C | CY→bit, CY data to send a bit | 2 | 2 |
 | CLR C | 0→CY, clear CY | 1 | 1 |
 | CLR bit | 0→bit, clear one bit | 2 | 2 |
